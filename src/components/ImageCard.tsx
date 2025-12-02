@@ -6,7 +6,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-import { Heart, Check, Pencil } from "lucide-react"
+import { Heart, Pencil } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { ImageCard as ImageCardType, CardActions } from "@/types"
 
