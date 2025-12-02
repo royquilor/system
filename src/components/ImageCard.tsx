@@ -1,6 +1,11 @@
 import { Toggle } from "@/components/ui/toggle"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 import { Heart, Check, Pencil } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { ImageCard as ImageCardType, CardActions } from "@/types"
@@ -99,32 +104,46 @@ export function ImageCard({ card, actions }: ImageCardProps) {
         )}
       >
         {/* Edit Button */}
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={handleEdit}
-          aria-label="Edit image"
-          className="text-white hover:text-white hover:bg-white/20"
-        >
-          <Pencil className="w-4 h-4" />
-        </Button>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleEdit}
+              aria-label="Edit image"
+              className="text-white hover:text-white hover:bg-white/20"
+            >
+              <Pencil className="w-4 h-4" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Edit</p>
+          </TooltipContent>
+        </Tooltip>
 
         {/* Like Toggle */}
-        <Toggle
-          pressed={card.isLiked}
-          onPressedChange={handleLikeChange}
-          aria-label={card.isLiked ? "Unlike image" : "Like image"}
-          variant="ghost"
-          size="sm"
-          className="transition-all duration-150 text-white hover:text-white hover:bg-white/20 data-[state=on]:bg-transparent data-[state=on]:hover:bg-white/20"
-        >
-          <Heart
-            className={cn(
-              "w-4 h-4 transition-all duration-150",
-              card.isLiked && "fill-current text-white"
-            )}
-          />
-        </Toggle>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Toggle
+              pressed={card.isLiked}
+              onPressedChange={handleLikeChange}
+              aria-label={card.isLiked ? "Unlike image" : "Like image"}
+              variant="ghost"
+              size="sm"
+              className="transition-all duration-150 text-white hover:text-white hover:bg-white/20 data-[state=on]:bg-transparent data-[state=on]:hover:bg-white/20"
+            >
+              <Heart
+                className={cn(
+                  "w-4 h-4 transition-all duration-150",
+                  card.isLiked && "fill-current text-white"
+                )}
+              />
+            </Toggle>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>{card.isLiked ? "Unlike" : "Like"}</p>
+          </TooltipContent>
+        </Tooltip>
       </div>
 
       {/* Set as Final Toggle - Bottom Center, appears on hover */}
@@ -140,17 +159,17 @@ export function ImageCard({ card, actions }: ImageCardProps) {
           aria-label={
             card.isFinal ? "Remove final selection" : "Set as final"
           }
+          variant="outline"
           size="sm"
           className={cn(
-            "transition-all duration-150 text-xs shadow-sm h-7 px-2",
-            "bg-black/30 backdrop-blur-[8px] text-white",
-            "hover:bg-black/40 data-[state=on]:bg-black/30 data-[state=on]:hover:bg-black/40"
+            "transition-all duration-150 text-xs h-7 px-2",
+            "bg-white/90 hover:bg-white"
           )}
         >
-          <span className="hidden sm:inline text-xs text-white">
+          <span className="hidden sm:inline text-xs">
             {card.isFinal ? "Final" : "Set as Final"}
           </span>
-          <span className="sm:hidden text-xs text-white">{card.isFinal ? "Final" : "Final"}</span>
+          <span className="sm:hidden text-xs">{card.isFinal ? "Final" : "Final"}</span>
         </Toggle>
       </div>
     </div>

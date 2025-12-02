@@ -1,56 +1,57 @@
 import { useState } from "react"
 import { ImageSelectionGrid } from "./components/ImageSelectionGrid"
 import { ImageCard, CardActions } from "./types"
+import { TooltipProvider } from "./components/ui/tooltip"
 
 /**
  * Mock data for demonstration purposes
- * Using placeholder images from Unsplash for variety
+ * Using local nature images from public/images folder
  */
 const initialCards: ImageCard[] = [
   {
     id: "1",
-    imageUrl: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop",
-    alt: "Beige crewneck sweatshirt on model",
+    imageUrl: "/images/martin-katler-60e34yYuEzY-unsplash 1.png",
+    alt: "Stark black and white mountain range under bright sky",
     isLiked: false,
     isFinal: false,
     createdAt: new Date("2024-12-01"),
   },
   {
     id: "2",
-    imageUrl: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400&h=400&fit=crop",
-    alt: "Beige crewneck sweatshirt front view",
+    imageUrl: "/images/martin-katler-msmJv8fwnoo-unsplash 1.png",
+    alt: "Dramatic coastal landscape with verdant cliff and blue ocean",
     isLiked: true,
     isFinal: true,
     createdAt: new Date("2024-12-01"),
   },
   {
     id: "3",
-    imageUrl: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=400&h=400&fit=crop",
-    alt: "Beige crewneck sweatshirt detail",
+    imageUrl: "/images/martin-katler-MpBMDyLzcSM-unsplash 1.png",
+    alt: "Reddish-brown bull resting in vibrant green pasture",
     isLiked: true,
     isFinal: false,
     createdAt: new Date("2024-12-02"),
   },
   {
     id: "4",
-    imageUrl: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&h=400&fit=crop",
-    alt: "Casual beige sweatshirt",
+    imageUrl: "/images/martin-katler-XiZmQFffO7U-unsplash 1.png",
+    alt: "Mountain peak emerging from sea of white clouds",
     isLiked: false,
     isFinal: false,
     createdAt: new Date("2024-12-02"),
   },
   {
     id: "5",
-    imageUrl: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&h=400&fit=crop",
-    alt: "Beige crewneck sweatshirt styling",
+    imageUrl: "/images/martin-katler-cRsK_b3UAM8-unsplash 1.png",
+    alt: "Minimalist misty forest with autumnal colors",
     isLiked: false,
     isFinal: true,
     createdAt: new Date("2024-12-03"),
   },
   {
     id: "6",
-    imageUrl: "https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=400&h=400&fit=crop",
-    alt: "Beige sweatshirt product shot",
+    imageUrl: "/images/martin-katler-i7FtnKClXS8-unsplash 1.png",
+    alt: "Crescent-shaped tropical island surrounded by clear blue ocean",
     isLiked: true,
     isFinal: false,
     createdAt: new Date("2024-12-03"),
@@ -98,12 +99,14 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <ImageSelectionGrid cards={cards} actions={cardActions} />
-      </main>
-    </div>
+    <TooltipProvider>
+      <div className="min-h-screen bg-gray-50">
+        {/* Main Content */}
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <ImageSelectionGrid cards={cards} actions={cardActions} />
+        </main>
+      </div>
+    </TooltipProvider>
   )
 }
 
